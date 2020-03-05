@@ -113,7 +113,14 @@ public class Version implements Comparable<Version> {
 
 	@Override
 	public String toString() {
-		return Arrays.stream(components).mapToObj(e -> Integer.toString(e)).collect(Collectors.joining("."));
+		StringBuilder sb = new StringBuilder();
+		for (int index = 0; index < components.length; index++) {
+			if (index > 0) {
+				sb.append(".");
+			}
+			sb.append(components[index]);
+		}
+		return sb.toString();
 	}
 
 	/**
