@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.appliedolap.essbase</groupId>
+	<artifactId>essbase-version-helper</artifactId>
+	<version>1.0.0</version>
+	<name>Essbase Version Helper</name>
+	<description>Utility library for working with different versions of Essbase (conditional execution, etc.)</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<essbase.version>11.1.2.4.010</essbase.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.appliedolap.essbase</groupId>
+			<artifactId>essbase-deps</artifactId>
+			<version>${essbase.version}</version>
+			<type>pom</type>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+</project>
