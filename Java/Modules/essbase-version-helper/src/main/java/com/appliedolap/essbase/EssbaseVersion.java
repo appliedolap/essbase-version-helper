@@ -10,13 +10,60 @@ public class EssbaseVersion {
 		 */
 		URL_DRILLTHROUGH("URL-based drill-through", V11_1_1_3),
 
+		// https://docs.oracle.com/cd/E66975_01/doc.1221/esb_javadoc/com/essbase/api/dataquery/IEssCubeView.html#setProcessMissing_boolean_
+		SET_PROCESS_MISSING("set process missing", V11_1_1_3),
+		
+		/**
+		 * Smart Lists, whee. Banner 11.x feature.
+		 */
+		SMART_LISTS("smart lists", V11_1_1),
+
+		/**
+		 * Set the user locale (<code>IEssbase.setUserLocale(...)</code>)
+		 */
+		SET_USER_LOCALE("set user locale", V11_1_2),
+		
+		MESSAGE_HANDLER("Essbase message handler", V11_1_2),
+		
+		OPEN_MAXL_SESSION("execute MaxL", V11_1_2),
+		
+		VARYING_ATTRIBUTES("varying attributes", V11_1_2),
+		
+		DATE_FORMAT_STRING("date format string", V11_1_2),
+		
+		/**
+		 * Needs constant IEssOlapFileObject.TYPE_OUTLINE
+		 */
+		GET_OUTLINE_FILE("get outline file", V11_1_2),
+		
+		GET_LOG_MESSAGE("get log message from exception", V11_1_2),
+		
+		/**
+		 * Run-time substitution variables
+		 */
+		CALC_RUN_TIME_SUB_VARS("run-time substitution variables", V11_1_2_3),
+
+		/**
+		 * Essbase Studio ("BPM") drill-through
+		 */
+		BPM_DRILLTHROUGH("Essbase Studio drill-through", V11_1_2_4),
+
+		/**
+		 * Dedicated class for setting outline edit options when using
+		 * <code>IEssCube.openOutline(...)</code>
+		 */
+		OUTLINE_EDIT_OPTION("outline edit options", V11_1_2_4),
+
 		/**
 		 * Outline XML exports were available starting in 11.1.2 (with a cast to an EssCube), and
 		 * made public API later on.
 		 */
-		// TODO: we could offer a refined version of this if we want, based on using the interface
-		// as opposed to a cast on EssCube
-		OUTLINE_XML_EXPORT("outline XML exports", V11_1_2);
+		OUTLINE_XML_EXPORT("outline XML exports", V11_1_2),
+
+		/**
+		 * Became public API (e.g. available in <code>IEssCube</code>, not just <code>EssCube</code>
+		 */
+		OUTLINE_XML_EXPORT_PUBLIC_API("outline XML export in public API", V12_2);
 
 		private String description;
 
@@ -45,7 +92,19 @@ public class EssbaseVersion {
 
 	public static final Version V9 = Version.of("9");
 
-	public static final Version V11 = Version.of("11");
+	/**
+	 * This is the first official version in the 11.x series, i.e., this is essentially the same as
+	 * what V11 would be. Notable introductions:
+	 * 
+	 * <ul>
+	 * <li>Smart Lists (<code>IEssMember.getSmartList()</code></li>
+	 * </ul>
+	 * 
+	 * <p>
+	 * Sidenote: for technical reasons, the Dodeca Essbase servlet considers smart lists to have
+	 * been introduced in 11.1.2.4 (something to do with the outline API).
+	 */
+	public static final Version V11_1_1 = Version.of("11.1.1");
 
 	/**
 	 * Notable additions in this API level:
@@ -63,20 +122,33 @@ public class EssbaseVersion {
 	 */
 	public static final Version V11_1_2 = Version.of("11.1.2");
 
-	public static final Version V12 = Version.of("12");
+	/**
+	 * Equivalent to version 11.1.2.3. Notable introductions:
+	 * 
+	 * <ul>
+	 * <li>Run-time substitution variables (EssCalcRunTimeSubVarDesc)
+	 * </ul>
+	 */
+	public static final Version V11_1_2_3 = Version.of("11.1.2.3");
+
+	/**
+	 * Equivalent to version 11.1.2.4. Notable introductions:
+	 * 
+	 * <ul>
+	 * <li><code>EssOutlineEditOption</code> class</li>
+	 * <li>BPM (Essbase Studio) drill-through, notably with an 'enum' value:
+	 * <code>IEssLinkedObject.EEssLinkedObjectType.BPM_DRILL_THROUGH</code></li> (and related _INT_VALUE)
+	 * </ul>
+	 */
+	public static final Version V11_1_2_4 = Version.of("11.1.2.4");
+
+	public static final Version V12_2 = Version.of("12.2");
 
 	private EssbaseVersion() {
 	}
 
 	public static boolean supports(EssbaseFeature feature) {
-		switch (feature) {
-		case URL_DRILLTHROUGH:
-			return isAtLeast(V11_1_1_3);
-		case OUTLINE_XML_EXPORT:
-			return isAtLeast(V11_1_2);
-		default:
-			return false;
-		}
+		return feature.isAvailable();
 	}
 
 	/**
@@ -112,7 +184,7 @@ public class EssbaseVersion {
 	}
 
 	public static boolean essbaseIsAtLeast11() {
-		return CURRENT.isGreaterOrEqual(V11);
+		return CURRENT.isGreaterOrEqual(V11_1_1);
 	}
 
 	// :(
