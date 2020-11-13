@@ -122,6 +122,8 @@ public class EssbaseVersion {
 	 */
 	public static final Version V11_1_2 = Version.of("11.1.2");
 
+	public static final Version V11_1_2_1 = Version.of("11.1.2.1");
+
 	/**
 	 * Equivalent to version 11.1.2.3. Notable introductions:
 	 * 
@@ -143,6 +145,8 @@ public class EssbaseVersion {
 	public static final Version V11_1_2_4 = Version.of("11.1.2.4");
 
 	public static final Version V12_2 = Version.of("12.2");
+
+	public static final Version V12_2_1_1 = Version.of("12.2.1.1");
 
 	private EssbaseVersion() {
 	}
