@@ -3,13 +3,23 @@
 	<groupId>com.appliedolap.essbase</groupId>
 	<artifactId>essbase-version-helper</artifactId>
 	<version>1.0.0</version>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>8</source>
+					<target>8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<name>Essbase Version Helper</name>
 	<description>Utility library for working with different versions of Essbase (conditional execution, etc.)</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
 		<essbase.version>11.1.2.4.010</essbase.version>
 	</properties>
 
