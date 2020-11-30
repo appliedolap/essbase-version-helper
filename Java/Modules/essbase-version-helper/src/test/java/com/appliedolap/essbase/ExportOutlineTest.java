@@ -62,7 +62,6 @@ public class ExportOutlineTest extends CubeOperationTest {
 // @Override
 // protected void doOperations(EssConnectionManager essConnectionManager, String action,
 // ActionResults results) throws EssException, IOException {
-// // //START_EXCLUDE_PRE_API_11_1_2_0
 // // get the cube
 // IEssCube cube = essConnectionManager.getCube();
 //
@@ -90,32 +89,17 @@ public class ExportOutlineTest extends CubeOperationTest {
 // ByteArrayOutputStream out = results.getOutputStream();
 //
 // writer.writeElement("OutlineXML", outlineXML, out);
-// // //END_EXCLUDE_PRE_API_11_1_2_0
 //
-// /* //START_INCLUDE_PRE_API_11_1_2_0
-// GenericWriter writer = new GenericWriter();
-// ByteArrayOutputStream out = results.getOutputStream();
-// writer.writeEmptyElement("OutlineXML", out);
-// //throw new EssException(Strings.getLocalizedString("outline.extract.not.supported"));
-// */ //END_INCLUDE_PRE_API_11_1_2_0
 // }
 //
-// // //START_EXCLUDE_PRE_API_11_1_2_0
 // private byte[] getOutline1(IEssCube cube, EssOtlExportOptions exportOptions) throws EssException
 // {
 // byte[] bytes = null;
-// // //END_EXCLUDE_PRE_API_11_1_2_0
 //
-// /* //START_INCLUDE_API_12_2_1_1
-// bytes = cube.exportOutline(exportOptions, null);
-// */ //END_INCLUDE_API_12_2_1_1
 //
-// // //START_EXCLUDE_PRE_API_11_1_2_0
 // return bytes;
 // }
-// // //END_EXCLUDE_PRE_API_11_1_2_0
 //
-// // //START_EXCLUDE_PRE_API_11_1_2_0
 // private byte[] getOutline2(IEssCube cube, EssOtlExportOptions exportOptions) throws EssException
 // {
 // byte[] bytes = null;
@@ -125,7 +109,6 @@ public class ExportOutlineTest extends CubeOperationTest {
 //
 // return bytes;
 // }
-// // //END_EXCLUDE_PRE_API_11_1_2_0
 //
 // @Override
 // protected boolean isAdminCredentialsRequired() {
