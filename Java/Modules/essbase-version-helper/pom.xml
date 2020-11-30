@@ -20,15 +20,14 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<essbase.version>11.1.2.4.010</essbase.version>
+		<essbase.version>11.1.2.4.040</essbase.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.appliedolap.essbase</groupId>
-			<artifactId>essbase-deps</artifactId>
+			<artifactId>ess_japi</artifactId>
 			<version>${essbase.version}</version>
-			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
