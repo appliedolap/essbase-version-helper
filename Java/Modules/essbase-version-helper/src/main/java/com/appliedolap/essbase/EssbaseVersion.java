@@ -1,6 +1,6 @@
 package com.appliedolap.essbase;
 
-import com.essbase.api.session.IEssbase;
+import java.lang.reflect.Field;
 
 public class EssbaseVersion {
 
@@ -88,7 +88,11 @@ public class EssbaseVersion {
 
 	}
 
-	public static final Version CURRENT = Version.of(IEssbase.JAPI_VERSION);
+	/**
+	 * Traditionally this was <code>Version.of(IEssbase.JAPI_VERSION);</code> but if done so then the string will
+	 * be inlined during compilation. We use reflection to pull it dynamically.
+	 */
+	public static final Version CURRENT;
 
 	public static final Version V9 = Version.of("9");
 
@@ -148,6 +152,22 @@ public class EssbaseVersion {
 
 	public static final Version V12_2_1_1 = Version.of("12.2.1.1");
 
+	static {
+		// none of these errors should be thrown, provided that the Essbase library is on the classpath
+		try {
+			Class<?> clazz = Class.forName("com.essbase.api.session.IEssbase");
+			Field versionField = clazz.getField("JAPI_VERSION");
+			String versionFieldValue = versionField.get(null).toString();
+			CURRENT = Version.of(versionFieldValue);
+		} catch (NoSuchFieldException e) {
+			throw new RuntimeException("Unable to access Essbase version from field", e);
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Unable to load Essbase class, probably means Essbase JAR is not available or on classpath", e);
+		} catch (IllegalAccessException e) {
+			throw new RuntimeException("Cannot access version field", e);
+		}
+	}
+
 	private EssbaseVersion() {
 	}
 
@@ -166,11 +186,11 @@ public class EssbaseVersion {
 	 * server you are connecting to.
 	 * 
 	 * @param feature the feature to test for
-	 * @throws an UnsupportedOperationException with detailed message if the feature is not availble
+	 * @throws UnsupportedOperationException with detailed message if the feature is not availble
 	 */
 	public static void assertHasFeature(EssbaseFeature feature) {
 		if (!supports(feature)) {
-			throw new UnsupportedOperationException("Version " + IEssbase.JAPI_VERSION + " of the Essbase Java API does not support " + feature.getDescription() + ", this feature is available in "
+			throw new UnsupportedOperationException("Version " + CURRENT + " of the Essbase Java API does not support " + feature.getDescription() + ", this feature is available in "
 					+ feature.getAvailableVersion().toString());
 		}
 	}
