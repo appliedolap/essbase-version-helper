@@ -65,11 +65,11 @@ public class EssbaseVersion {
 		 */
 		OUTLINE_XML_EXPORT_PUBLIC_API("outline XML export in public API", V12_2);
 
-		private String description;
+		private final String description;
 
-		private Version availableVersion;
+		private final Version availableVersion;
 
-		private EssbaseFeature(String description, Version availableVersion) {
+		EssbaseFeature(String description, Version availableVersion) {
 			this.description = description;
 			this.availableVersion = availableVersion;
 		}
@@ -209,15 +209,6 @@ public class EssbaseVersion {
 
 	public static boolean essbaseIsAtLeast11() {
 		return CURRENT.isGreaterOrEqual(V11_1_1);
-	}
-
-	// :(
-	public static <E> E fieldIfAtleast(Version version, E desired, E safe) {
-		if (isAtLeast(version)) {
-			return desired;
-		} else {
-			return safe;
-		}
 	}
 
 }
