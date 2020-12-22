@@ -63,7 +63,12 @@ public class EssbaseVersion {
 		/**
 		 * Became public API (e.g. available in <code>IEssCube</code>, not just <code>EssCube</code>
 		 */
-		OUTLINE_XML_EXPORT_PUBLIC_API("outline XML export in public API", V12_2);
+		OUTLINE_XML_EXPORT_PUBLIC_API("outline XML export in public API", V12_2),
+
+		/**
+		 * Zoom in with ancestor members appearing at the top of their children instead of under their children.
+		 */
+		ANCESTOR_ON_TOP("zoom in with ancestor on top option", V21_1);
 
 		private final String description;
 
@@ -151,6 +156,8 @@ public class EssbaseVersion {
 	public static final Version V12_2 = Version.of("12.2");
 
 	public static final Version V12_2_1_1 = Version.of("12.2.1.1");
+
+	public static final Version V21_1 = Version.of("21.1");
 
 	static {
 		// none of these errors should be thrown, provided that the Essbase library is on the classpath
