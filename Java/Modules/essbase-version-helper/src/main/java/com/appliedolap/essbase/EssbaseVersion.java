@@ -68,7 +68,7 @@ public class EssbaseVersion {
 		/**
 		 * Zoom in with ancestor members appearing at the top of their children instead of under their children.
 		 */
-		ANCESTOR_ON_TOP("zoom in with ancestor on top option", V21_1);
+		ANCESTOR_ON_TOP("zoom in with ancestor on top option", V19_3);
 
 		private final String description;
 
@@ -156,6 +156,8 @@ public class EssbaseVersion {
 	public static final Version V12_2 = Version.of("12.2");
 
 	public static final Version V12_2_1_1 = Version.of("12.2.1.1");
+
+	public static final Version V19_3 = Version.of("19.3");
 
 	public static final Version V21_1 = Version.of("21.1");
 
