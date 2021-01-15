@@ -10,19 +10,9 @@ public class ExportOutlineTest extends CubeOperationTest {
 	}
 
 	public void doOperations(IEssCube cube) throws Exception {
-
 		 if (EssbaseFeature.OUTLINE_XML_EXPORT.isAvailable()) {
 			export(cube);
 		 }
-		 
-		 if (EssbaseVersion.supports(EssbaseFeature.OUTLINE_XML_EXPORT)) {
-			 export(cube);
-		 }
-		 
-		 if (EssbaseVersion.isAtLeast(EssbaseVersion.V11_1_2)) {
-			 export(cube);
-		 }
-		 
 	}
 	
 	public void export(IEssCube cube) throws Exception {

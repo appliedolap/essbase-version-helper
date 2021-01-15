@@ -12,11 +12,46 @@ public class EssbaseVersion {
 
 		// https://docs.oracle.com/cd/E66975_01/doc.1221/esb_javadoc/com/essbase/api/dataquery/IEssCubeView.html#setProcessMissing_boolean_
 		SET_PROCESS_MISSING("set process missing", V11_1_1_3),
-		
+
 		/**
-		 * Smart Lists, whee. Banner 11.x feature.
+		 * Typed members refers to text measures and/or date measures. Banner 11.x feature.
 		 */
-		SMART_LISTS("smart lists", V11_1_1),
+		TYPED_MEMBERS("typed members - text and date measures", V11_1_1),
+
+		/**
+		 * Smart Lists a/k/a text measures, whee. Banner 11.x feature.
+		 */
+		TEXT_MEASURES("text measures / smart lists", V11_1_1),
+
+		/**
+		 * Smart Lists a/k/a text measures, whee. Banner 11.x feature.
+		 */
+		DATE_MEASURES("date measures", V11_1_1),
+
+		/**
+		 * Formatted values returned in the grid
+		 */
+		FORMATTED_VALUE("formatted values", V11_1_1),
+
+		/**
+		 * Member comment
+		 */
+		MEMBER_COMMENT("member comment", V11_1_1),
+
+		/**
+		 * MDX Operations in our server started with 11.1.1 even though Essbase may have supported it earlier)
+		 */
+		MDX_OPERATIONS("mdx operations", V11_1_1),
+
+		/**
+		 * Get or put file from a byte array.  Previous versions required writing the data to a file.
+		 */
+		GET_OR_PUT_FILE_FROM_BYTE_ARRAY("get or put file from a byte array", V11_1_1),
+
+		/**
+		 * Call is present to get the file size from the api - IEssOlapFileObject.getFileSizeLong()
+		 */
+		FILE_SIZE_FROM_API("get or put file from a byte array", V11_1_2_1),
 
 		/**
 		 * Set the user locale (<code>IEssbase.setUserLocale(...)</code>)
@@ -37,7 +72,12 @@ public class EssbaseVersion {
 		GET_OUTLINE_FILE("get outline file", V11_1_2),
 		
 		GET_LOG_MESSAGE("get log message from exception", V11_1_2),
-		
+
+		/**
+		 * Run-time substitution variables
+		 */
+		UNIQUE_NAME("unique name for duplicate members", V11_1_2_1),
+
 		/**
 		 * Run-time substitution variables
 		 */
