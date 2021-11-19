@@ -108,7 +108,12 @@ public class EssbaseVersion {
 		/**
 		 * Zoom in with ancestor members appearing at the top of their children instead of under their children.
 		 */
-		ANCESTOR_ON_TOP("zoom in with ancestor on top option", V19_3);
+		ANCESTOR_ON_TOP("zoom in with ancestor on top option", V19_3),
+
+		/**
+		 * Drillthrough via the Essbase server introduced in Essbase 19c.
+		 */
+		NATIVE_DRILLTHROUGH("drillthrough via Essbase server", V19_3);
 
 		private final String description;
 
