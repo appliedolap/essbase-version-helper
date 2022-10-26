@@ -4,6 +4,11 @@ This library provides convenience and utility methods for working with different
 Essbase Java API. This library requires that you have the Essbase Java API available in your program, 
 as it relies on at least being able to resolve `IEssbase.JAPI_VERSION`. 
 
+>**Note**
+>this module has been removed from the full DSMS build because it is versioned as a release.
+>Bump the version if any changes are made, and make sure all dependency references to the project
+>are bumped as well.
+
 ## Using the Library
 
 You can easily perform version checks, for example, to determine if the current Essbase library
