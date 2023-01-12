@@ -81,7 +81,7 @@ public class EssbaseVersion {
 		/**
 		 * Run-time substitution variables
 		 */
-		CALC_RUN_TIME_SUB_VARS("run-time substitution variables", V11_1_2_3),
+		CALC_RUN_TIME_SUB_VARS("run-time substitution variables", V11_1_2_4),
 
 		/**
 		 * Essbase Studio ("BPM") drill-through
