@@ -5,6 +5,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
+/**
+ * Utility class for representing a version of something and providing comparison abilities, such as to differentiate
+ * accurately between version 11.1.2.4 and version 12 of Essbase. Also used to compare at more granular levels, such as
+ * comparing 11.1.2.4.010 to 11.1.2.4.048.
+ */
 public class Version implements Comparable<Version> {
 
 	private int[] components;
@@ -18,6 +23,11 @@ public class Version implements Comparable<Version> {
 		}
 	};
 
+	/**
+	 * Create a new version given a text version string such as "11.1.2.4".
+	 *
+	 * @param version the version to parse
+	 */
 	public Version(String version) {
 		// splits on a period or an underscore
 		textComponents = version.split("[\\._]");
@@ -34,7 +44,7 @@ public class Version implements Comparable<Version> {
 
 	/**
 	 * Convenience fluent method or building a new Version object.
-	 * 
+	 *
 	 * @param versionText the version to parse
 	 * @return a new Version object
 	 */
@@ -44,29 +54,56 @@ public class Version implements Comparable<Version> {
 
 	/**
 	 * Construct a new Version object with the explicit version components.
-	 * 
-	 * @param components
+	 *
+	 * @param components an array of components representing the version
 	 */
 	public Version(int... components) {
 		this.components = components;
 	}
 
+	/**
+	 * Returns the major version (first number). For example, 11.1.2.4 would be 11.
+	 *
+	 * @return the major version
+	 */
 	public int getMajor() {
 		return getComponent(0);
 	}
 
+	/**
+	 * Returns the minor version (second number). For example, 11.1.2.4 would be 1.
+	 *
+	 * @return the minor version
+	 */
 	public int getMinor() {
 		return getComponent(1);
 	}
 
+	/**
+	 * Returns the revision (third number). For example, 11.1.2.4 would be 2.
+	 *
+	 * @return the revision version
+	 */
 	public int getRevision() {
 		return getComponent(2);
 	}
 
+	/**
+	 * Returns the build (fourth number). For example, 11.1.2.4 would be 4.
+	 *
+	 * @return the build number
+	 */
 	public int getBuild() {
 		return getComponent(3);
 	}
 
+	/**
+	 * Gets a version component at the specified index. If it doesn't exist, 0 will be returned.
+	 *
+	 * @param index the index of the component in the original version
+	 *
+	 * @return the value, 0 if it isn't defined
+	 */
 	private int getComponent(int index) {
 		if (index < components.length) {
 			return components[index];
@@ -80,7 +117,7 @@ public class Version implements Comparable<Version> {
 	 * the passed in components. If the passed in components are more detailed
 	 * (i.e., components.length is greater than the number of components in this
 	 * version, the missing components on *this* version are treated like zero).
-	 * 
+	 *
 	 * @param components the components to check against
 	 * @return true if this version is greater than the version represented by
 	 *         the passed in components
@@ -99,14 +136,30 @@ public class Version implements Comparable<Version> {
 		return true;
 	}
 
+	/**
+	 * Checks if the given version is greater or equal to this version.
+	 *
+	 * @param otherVersion the other version
+	 * @return true if greater or equal, false otherwise
+	 */
 	public boolean isGreaterOrEqual(Version otherVersion) {
 		return isGreaterOrEqual(otherVersion.getComponents());
 	}
 
+	/**
+	 * Get all version components as an array of integers.
+	 *
+	 * @return all the version components as an array
+	 */
 	public int[] getComponents() {
 		return components;
 	}
 
+	/**
+	 * Gets the number of defined version components.
+	 *
+	 * @return the number of defined version components
+	 */
 	public int getNumComponents() {
 		return components.length;
 	}
@@ -128,7 +181,7 @@ public class Version implements Comparable<Version> {
 	 * This is an alternative method to use when printing when you need leading
 	 * zeros on a version that would otherwise get lost in the conversion to a
 	 * string.
-	 * 
+	 *
 	 * @return text representation of the version, based on original text values
 	 */
 	public String toTextString() {

@@ -2,8 +2,15 @@ package com.appliedolap.essbase;
 
 import java.lang.reflect.Field;
 
+/**
+ * Provides a simple utility class for dynamically determining what Essbase features are available, based on the detected
+ * version of the Essbase JAR that this program is currently running with.
+ */
 public class EssbaseVersion {
 
+	/**
+	 * An enumeration of all incremental Essbase features that are recognized by this library.
+	 */
 	public enum EssbaseFeature {
 		/**
 		 * This is the FDMEE (Drillbridge) style drill-through that uses a web-browser
@@ -39,7 +46,7 @@ public class EssbaseVersion {
 		MEMBER_COMMENT("member comment", V11_1_1),
 
 		/**
-		 * MDX Operations in our server started with 11.1.1 even though Essbase may have supported it earlier)
+		 * MDX Operations in our server started with 11.1.1 even though Essbase may have supported it earlier.
 		 */
 		MDX_OPERATIONS("mdx operations", V11_1_1),
 
@@ -57,20 +64,20 @@ public class EssbaseVersion {
 		 * Set the user locale (<code>IEssbase.setUserLocale(...)</code>)
 		 */
 		SET_USER_LOCALE("set user locale", V11_1_2),
-		
+
 		MESSAGE_HANDLER("Essbase message handler", V11_1_2),
-		
+
 		OPEN_MAXL_SESSION("execute MaxL", V11_1_2),
-		
+
 		VARYING_ATTRIBUTES("varying attributes", V11_1_2),
-		
+
 		DATE_FORMAT_STRING("date format string", V11_1_2),
-		
+
 		/**
 		 * Needs constant IEssOlapFileObject.TYPE_OUTLINE
 		 */
 		GET_OUTLINE_FILE("get outline file", V11_1_2),
-		
+
 		GET_LOG_MESSAGE("get log message from exception", V11_1_2),
 
 		/**
@@ -149,11 +156,11 @@ public class EssbaseVersion {
 	/**
 	 * This is the first official version in the 11.x series, i.e., this is essentially the same as
 	 * what V11 would be. Notable introductions:
-	 * 
+	 *
 	 * <ul>
 	 * <li>Smart Lists (<code>IEssMember.getSmartList()</code></li>
 	 * </ul>
-	 * 
+	 *
 	 * <p>
 	 * Sidenote: for technical reasons, the Dodeca Essbase servlet considers smart lists to have
 	 * been introduced in 11.1.2.4 (something to do with the outline API).
@@ -162,17 +169,17 @@ public class EssbaseVersion {
 
 	/**
 	 * Notable additions in this API level:
-	 * 
-	 * <pre>
-	 * - IEssCube.getDrillThroughURL() -> IEssURLDrillThrough
-	 * - IEssCube.listDrillThroughURLs() -> IEssURLDrillThrough[] 
-	 * </pre>
+	 *
+	 * <ul>
+	 *  <li><code>IEssCube.getDrillThroughURL()</code> returns <code>IEssURLDrillThrough</code></li>
+	 *  <li><code>IEssCube.listDrillThroughURLs()</code> returns <code>IEssURLDrillThrough[]</code></li>
+	 * </ul>
 	 */
 	public static final Version V11_1_1_3 = Version.of("11.1.1.3");
 
 	/**
 	 * Equivalent to version 11.1.2.0. Notable introductions:
-	 * 
+	 *
 	 */
 	public static final Version V11_1_2 = Version.of("11.1.2");
 
@@ -180,7 +187,7 @@ public class EssbaseVersion {
 
 	/**
 	 * Equivalent to version 11.1.2.3. Notable introductions:
-	 * 
+	 *
 	 * <ul>
 	 * <li>Run-time substitution variables (EssCalcRunTimeSubVarDesc)
 	 * </ul>
@@ -189,11 +196,11 @@ public class EssbaseVersion {
 
 	/**
 	 * Equivalent to version 11.1.2.4. Notable introductions:
-	 * 
+	 *
 	 * <ul>
 	 * <li><code>EssOutlineEditOption</code> class</li>
 	 * <li>BPM (Essbase Studio) drill-through, notably with an 'enum' value:
-	 * <code>IEssLinkedObject.EEssLinkedObjectType.BPM_DRILL_THROUGH</code></li> (and related _INT_VALUE)
+	 * <code>IEssLinkedObject.EEssLinkedObjectType.BPM_DRILL_THROUGH</code> (and related <code>_INT_VALUE</code>)</li>
 	 * </ul>
 	 */
 	public static final Version V11_1_2_4 = Version.of("11.1.2.4");
@@ -237,14 +244,14 @@ public class EssbaseVersion {
 	 * Performs an assertion that a given feature is available in the available Essbase Java API.
 	 * Feature detection is performed based on what we have programmed in this library (as opposed
 	 * to some sort of dynamic feature check).
-	 * 
+	 *
 	 * <p>
 	 * As with all other operations in this library, feature detection/availability is based on the
 	 * version of the Essbase Java library you are using, as opposed to the version of the Essbase
 	 * server you are connecting to.
-	 * 
+	 *
 	 * @param feature the feature to test for
-	 * @throws UnsupportedOperationException with detailed message if the feature is not availble
+	 * @throws UnsupportedOperationException with detailed message if the feature is not available
 	 */
 	public static void assertHasFeature(EssbaseFeature feature) {
 		if (!supports(feature)) {

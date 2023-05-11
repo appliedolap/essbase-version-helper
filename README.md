@@ -4,11 +4,6 @@ This library provides convenience and utility methods for working with different
 Essbase Java API. This library requires that you have the Essbase Java API available in your program, 
 as it relies on at least being able to resolve `IEssbase.JAPI_VERSION`. 
 
->**Note**
->this module has been removed from the full DSMS build because it is versioned as a release.
->Bump the version if any changes are made, and make sure all dependency references to the project
->are bumped as well.
-
 ## Using the Library
 
 You can easily perform version checks, for example, to determine if the current Essbase library
@@ -45,7 +40,7 @@ For example, in the outline XML export example, there is a class you use:
 	
 Since this class doesn't exist until 11.1.2, in order to make sure that your program that is 
 packaging with, say, a 9.x Java library doesn't explicitly include this symbol in the execution
-codepath, you need to perform the import as such:
+code path, you need to perform the import as such:
 
 	import com.essbase.api.datasource.*;
 	
@@ -53,5 +48,9 @@ Rather than:
 
 	import com.essbase.api.datasource.EssOtlExportOptions;
 	
-Similar care should be taken with `switch` statements. You may need/want to 'unroll; the switch
+Similar care should be taken with `switch` statements. You may need/want to "unroll" the switch
 into `ifs` that are guarded with a version check from this library.
+
+## License
+
+Licensed under the Apache Software License version 2.0.
